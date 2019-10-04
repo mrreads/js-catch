@@ -66,11 +66,11 @@ class GamePlayer
         {
             if (event.code == 'KeyA') 
             {
-                this.move(-10);
+                this.move(-23);
             }
             if (event.code == 'KeyD') 
             {
-                this.move(10);
+                this.move(23);
             }
         }.bind(this));
     }
