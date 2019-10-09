@@ -10,7 +10,8 @@ class GamePlayer
         this.element.style.width = width + 'px';
         this.element.style.height = height + 'px';
         this.element.style.position = "absolute";
-        this.element.style.top = (field.height - this.height) + 'px';
+        //this.element.style.top = (field.height - this.height) + 'px';
+        this.element.style.top = 15 + 'px';
         this.element.style.left = (field.width / 2 - this.width) + 'px';
         this.element.style.backgroundImage = 'url("'+img+'")';
 
@@ -19,7 +20,28 @@ class GamePlayer
 
         this.keyboardControl();
 
-        this.initDebug();
+        //this.initDebug();
+
+        this.frametime = 1000/60; //60fps
+        this.mass = 2;
+        this.jumpForce = 50;
+        this.gravitationInit();
+
+        this.isJumping = false;
+    }
+
+    gravitationInit()
+    {
+        setInterval(function()
+        {
+            let temp;
+            if ((parseInt(this.element.style.top) + parseInt(this.element.style.height)) < (parseInt(this.field.style.height)))
+            {
+                temp = parseInt(this.element.style.top) + this.mass;
+                this.element.style.top = temp + 'px';
+                if (this.isJumping == false) { this.mass = this.mass + 1; } else { this.mass = 2; }              
+            }
+        }.bind(this), this.frametime);
     }
 
     move(value)
@@ -56,8 +78,26 @@ class GamePlayer
                     let temp = (parseInt(this.field.style.width) - parseInt(this.element.style.width));
                     this.element.style.left = temp + 'px';
                 }
-            }.bind(this), 1);
+            }.bind(this), this.frametime);
         }
+    }
+
+    jump()
+    {
+        let counter = 0;
+        this.isJumping = true;
+            let jump = setInterval(function () 
+            {
+                if (counter == 10) 
+                {
+                    this.isJumping = false;
+                    clearInterval(jump);
+                } 
+                let temp;
+                temp = parseInt(this.element.style.top) - parseInt(this.jumpForce);
+                this.element.style.top = temp + 'px';
+                counter++;
+            }.bind(this), this.frametime);
     }
 
     keyboardControl()
@@ -71,6 +111,14 @@ class GamePlayer
             if (event.code == 'KeyD') 
             {
                 this.move(23);
+            }
+        }.bind(this));
+
+        document.addEventListener('keypress', function (event) 
+        {
+            if (event.code == 'KeyW') 
+            {
+                this.jump();
             }
         }.bind(this));
     }
@@ -89,6 +137,6 @@ class GamePlayer
         {
             document.querySelector(".debug p:nth-child(1)").textContent = `Miss: ${this.miss}`;
             document.querySelector(".debug p:nth-child(2)").textContent = `Catch: ${this.catch}`;
-        }.bind(this), 100);
+        }.bind(this), this.frametime);
     }
 }
