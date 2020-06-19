@@ -19,6 +19,8 @@ class Game
         this.start.textContent = `Начать игру`;
         this.start.addEventListener('click', function()
         {
+            let audio = new Audio('./audio/start.mp3');
+            audio.play();
             this.startGame();
         }.bind(this));
     }
