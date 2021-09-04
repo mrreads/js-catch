@@ -15,7 +15,7 @@ class Game
         this.element.appendChild(this.logo);
         this.start = document.createElement("p");
         this.element.appendChild(this.start);
-        this.logo.textContent = `МАНИСОВ the game`;
+        this.logo.textContent = `osu!catch`;
         this.start.textContent = `Начать игру`;
         this.start.addEventListener('click', function()
         {
@@ -28,12 +28,12 @@ class Game
     startGame()
     {
         let field = new GameArena('field', this.height, this.width, './img/background1.jpg');
-        let player = new GamePlayer('player', 100, 100, field, './img/player1.jpg');
+        let player = new GamePlayer('player', 100, 100, field, './img/player.png');
         
         let i = 0;
         setInterval(function()
         {
-            window['object' + i] = new GameObject('object', 75, 25, field, player);
+            window['object' + i] = new GameObject('object', 75, 75, field, player);
             i++;
         }.bind(this), 1000);
     }

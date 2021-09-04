@@ -8,6 +8,7 @@
 
 body
 {
+	/* image-rendering: pixelated; */
 	font-family: "Pattaya", sans-serif;
 
 	padding: 55px;
@@ -17,9 +18,14 @@ body
 {
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: cover;
+	background-size: contain;
 	overflow: hidden;
-}c
+}
+
+#field
+{
+	background-size: cover;
+}
 
 .object
 {
@@ -38,7 +44,7 @@ body
 
 	text-align: center;
 
-	color: red;
+	color: white;
 }
 
 #menu p:nth-child(2)
