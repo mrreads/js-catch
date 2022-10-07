@@ -62,13 +62,21 @@ class GamePlayer
 
     keyboardControl()
     {
-        document.addEventListener('keypress', function (event) 
+        document.addEventListener('keydown', function (event) 
         {
             if (event.code == 'KeyA') 
             {
                 this.move(-23);
             }
             if (event.code == 'KeyD') 
+            {
+                this.move(23);
+            }
+            if (event.code == 'ArrowLeft') 
+            {
+                this.move(-23);
+            }
+            if (event.code == 'ArrowRight') 
             {
                 this.move(23);
             }

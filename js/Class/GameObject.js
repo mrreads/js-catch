@@ -38,6 +38,7 @@ class GameObject
                     this.element.remove();
 
                     let catchAudio = new Audio('./audio/catch.wav');
+                    catchAudio.volume = .3;
                     catchAudio.play();
                 }
             }
@@ -51,6 +52,7 @@ class GameObject
                     this.element.remove();
 
                     let missAudio = new Audio('./audio/miss.wav');
+                    missAudio.volume = .3;
                     missAudio.play();
                 }
             }

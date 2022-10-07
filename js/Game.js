@@ -4,7 +4,8 @@ class Game
     {
         this.height = height;
         this.width = width;
-        if (!document.querySelector(`#menu`)) { document.body.innerHTML = `<div id="menu"></div>`; }
+        document.body.innerHTML = `<div class="tutorial">Играть нужно стрелками лево/право или A/D</div>`;
+        if (!document.querySelector(`#menu`)) { document.body.innerHTML += `<div id="menu"></div>`; }
         this.element = document.querySelector(`#menu`);
         this.element.style.width = width + 'px';
         this.element.style.height = height + 'px';
